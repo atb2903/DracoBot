@@ -106,9 +106,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     // custom_id set in payload when sending message component
     const componentID = data.custom_id;
 
-    if (componentID.startsWith('accept button')) {
+    if (componentID.startsWith('accept_button_')) {
       // get the associated game ID
-      const gameID = componentID.replace('accept_button_', '');
+      const gameId = componentID.replace('accept_button_', '');
       // Delete message with token in request body
       const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
       try {
