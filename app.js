@@ -69,7 +69,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
       // Create active game using message ID as the game ID
       activeGames[id] = {
-        id: UserId,
+        id: userId,
         objectName,
       };
 
@@ -80,7 +80,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
           components: [
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
-              content: `Rock paper scissors challenge from <@${userID}>`,
+              content: `Rock paper scissors challenge from <@${userId}>`,
             },
             {
               type: MessageComponentTypes.ACTION_ROW,
@@ -104,11 +104,11 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
   if (type == InteractionType.MESSAGE_COMPONENT) {
     // custom_id set in payload when sending message component
-    const componentID = data.custom_id;
+    const componentId = data.custom_id;
 
-    if (componentID.startsWith('accept_button_')) {
+    if (componentId.startsWith('accept_button_')) {
       // get the associated game ID
-      const gameId = componentID.replace('accept_button_', '');
+      const gameId = componentId.replace('accept_button_', '');
       // Delete message with token in request body
       const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
       try {
@@ -128,7 +128,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                   {
                     type: MessageComponentTypes.STRING_SELECT,
                     // append game ID
-                    custom_id: `select_choice_${gameID}`,
+                    custom_id: `select_choice_${gameId}`,
                     options: getShuffledOptions(),
                   },
                 ],
@@ -143,9 +143,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       }
     } else if (componentId.startsWith('select_choice_')) {
       // get the associated game ID
-      const gameID = componentID.replace('select_choice_', '');
+      const gameId = componentId.replace('select_choice_', '');
       
-      if (activeGames[gameID]) {
+      if (activeGames[gameId]) {
         // Interaction context
         const context = req.body.context;
         // Get user ID and object choice for responding user
