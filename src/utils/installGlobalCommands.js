@@ -1,6 +1,6 @@
 import { discordRequest } from './discordRequest.js';
 
-export async function InstallGlobalCommands(appId, commands) {
+export async function installGlobalCommands(appId, commands) {
   // API endpoint to overwrite global commands
   const endpoint = `applications/${appId}/commands`;
 
