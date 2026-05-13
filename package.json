@@ -21,7 +21,7 @@
       "name" : "Alex Burnham"
     }
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "discord-interactions": "^4.0.0",
     "dotenv": "^16.0.3",
