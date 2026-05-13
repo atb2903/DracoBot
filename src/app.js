@@ -8,7 +8,7 @@ import {
   MessageComponentTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-import { getRandomEmoji } from './utils/utils.js';
+import { getRandomEmoji } from './utils/getRandomEmoji.js';
 import { getShuffledOptions, getResult } from './game.js';
 import { DiscordRequest } from './utils/discordRequest.js';
 
