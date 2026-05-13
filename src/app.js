@@ -1,19 +1,14 @@
 import 'dotenv/config';
 import express from 'express';
 import {
-  ButtonStyleTypes,
-  InteractionResponseFlags,
   InteractionResponseType,
   InteractionType,
-  MessageComponentTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-import { getRandomEmoji } from './utils/getRandomEmoji.js';
-import { getShuffledRPSOptions, getRPSResult } from './rpsGame.js';
-import { discordRequest } from './utils/discordRequest.js';
 import { testCommand } from './commands/test/testCommand.js';
 import { challengeCommand } from './commands/challenge/challengeCommand.js';
 import { acceptButton } from './commands/challenge/acceptButton.js';
+import { selectChoice } from './commands/challenge/selectChoice.js';
 
 // Create an express app
 const app = express();
@@ -65,57 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     if (componentId.startsWith('accept_button_')) {
       acceptButton(req, res, componentId);
     } else if (componentId.startsWith('select_choice_')) {
-      // get the associated game ID
-      const gameId = componentId.replace('select_choice_', '');
-      
-      if (activeGames[gameId]) {
-        // Interaction context
-        const context = req.body.context;
-        // Get user ID and object choice for responding user
-        // USer ID is in user field for (G)DMs, and member for servers
-        const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
-        const objectName = data.values[0];
-        // Calculate result from helper function
-        const resultStr = getRPSResult(activeGames[gameId], {
-          id: userId,
-          objectName,
-        });
-
-        // Remove game from storage
-        delete activeGames[gameId];
-        // Update message with token in request body
-        const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
-
-        try {
-          // Send results
-          await res.send({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            data: {
-              flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-              components: [
-                {
-                  type: MessageComponentTypes.TEXT_DISPLAY,
-                  content: resultStr,
-                }
-              ]
-            },
-          });
-          // Update ephemeral message
-          await discordRequest(endpoint, {
-            method: 'PATCH',
-            body: {
-              components: [
-                {
-                  type: MessageComponentTypes.TEXT_DISPLAY,
-                  content: 'Nice choice ' + getRandomEmoji()
-                }
-              ],
-            },
-          });
-        } catch (err) {
-          console.error('Error sending message: ', err);
-        }
-      }
+      selectChoice(req, res, componentId, activeGames);
     }
 
     return;
