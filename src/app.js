@@ -13,6 +13,7 @@ import { getShuffledRPSOptions, getRPSResult } from './rpsGame.js';
 import { discordRequest } from './utils/discordRequest.js';
 import { testCommand } from './commands/test/testCommand.js';
 import { challengeCommand } from './commands/challenge/challengeCommand.js';
+import { acceptButton } from './commands/challenge/acceptButton.js';
 
 // Create an express app
 const app = express();
@@ -62,40 +63,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     const componentId = data.custom_id;
 
     if (componentId.startsWith('accept_button_')) {
-      // get the associated game ID
-      const gameId = componentId.replace('accept_button_', '');
-      // Delete message with token in request body
-      const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
-      try {
-        await res.send({
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: {
-            // Indicates it'll be an ephemeral message
-            flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
-            components: [
-              {
-                type: MessageComponentTypes.TEXT_DISPLAY,
-                content: 'What is your object of choice?',
-              },
-              {
-                type: MessageComponentTypes.ACTION_ROW,
-                components: [
-                  {
-                    type: MessageComponentTypes.STRING_SELECT,
-                    // append game ID
-                    custom_id: `select_choice_${gameId}`,
-                    options: getShuffledRPSOptions(),
-                  },
-                ],
-              },
-            ],
-          },
-        });
-        // Delete previous message
-        await discordRequest(endpoint, { method: 'DELETE' });
-      } catch (err) {
-        console.error('Error sending message: ', err);
-      }
+      acceptButton(req, res, componentId);
     } else if (componentId.startsWith('select_choice_')) {
       // get the associated game ID
       const gameId = componentId.replace('select_choice_', '');
