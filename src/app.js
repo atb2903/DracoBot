@@ -9,7 +9,7 @@ import {
   verifyKeyMiddleware,
 } from 'discord-interactions';
 import { getRandomEmoji } from './utils/getRandomEmoji.js';
-import { getShuffledOptions, getResult } from './game.js';
+import { getShuffledRPSOptions, getRPSResult } from './rpsGame.js';
 import { discordRequest } from './utils/discordRequest.js';
 
 // Create an express app
@@ -130,7 +130,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     type: MessageComponentTypes.STRING_SELECT,
                     // append game ID
                     custom_id: `select_choice_${gameId}`,
-                    options: getShuffledOptions(),
+                    options: getShuffledRPSOptions(),
                   },
                 ],
               },
@@ -154,7 +154,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
         const objectName = data.values[0];
         // Calculate result from helper function
-        const resultStr = getResult(activeGames[gameId], {
+        const resultStr = getRPSResult(activeGames[gameId], {
           id: userId,
           objectName,
         });

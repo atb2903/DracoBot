@@ -1,6 +1,6 @@
 import { capitalize } from './utils/capitalize.js';
 
-export function getResult(p1, p2) {
+export function getRPSResult(p1, p2) {
   let gameResult;
   if (RPSChoices[p1.objectName] && RPSChoices[p1.objectName][p2.objectName]) {
     // o1 wins
@@ -24,10 +24,10 @@ export function getResult(p1, p2) {
     gameResult = { win: p1, lose: p2, verb: 'tie' };
   }
 
-  return formatResult(gameResult);
+  return formatRPSResult(gameResult);
 }
 
-function formatResult(result) {
+function formatRPSResult(result) {
   const { win, lose, verb } = result;
   return verb === 'tie'
     ? `<@${win.id}> and <@${lose.id}> draw with **${win.objectName}**`
@@ -85,7 +85,7 @@ export function getRPSChoices() {
 }
 
 // Function to fetch shuffled options for select menu
-export function getShuffledOptions() {
+export function getShuffledRPSOptions() {
   const allChoices = getRPSChoices();
   const options = [];
 
