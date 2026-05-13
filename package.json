@@ -13,7 +13,14 @@
     "register": "node src/commands.js",
     "dev": "nodemon src/app.js"
   },
-  "author": "Shay DeWael",
+  "contributors" : [
+    {
+      "name" : "Shay DeWael"
+    },
+    {
+      "name" : "Alex Burnham"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "discord-interactions": "^4.0.0",
