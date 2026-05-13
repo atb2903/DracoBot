@@ -10,7 +10,7 @@ import {
 } from 'discord-interactions';
 import { getRandomEmoji } from './utils/getRandomEmoji.js';
 import { getShuffledOptions, getResult } from './game.js';
-import { DiscordRequest } from './utils/discordRequest.js';
+import { discordRequest } from './utils/discordRequest.js';
 
 // Create an express app
 const app = express();
@@ -138,7 +138,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
           },
         });
         // Delete previous message
-        await DiscordRequest(endpoint, { method: 'DELETE' });
+        await discordRequest(endpoint, { method: 'DELETE' });
       } catch (err) {
         console.error('Error sending message: ', err);
       }
@@ -179,7 +179,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             },
           });
           // Update ephemeral message
-          await DiscordRequest(endpoint, {
+          await discordRequest(endpoint, {
             method: 'PATCH',
             body: {
               components: [
