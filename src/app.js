@@ -11,7 +11,7 @@ import {
 import { getRandomEmoji } from './utils/getRandomEmoji.js';
 import { getShuffledRPSOptions, getRPSResult } from './rpsGame.js';
 import { discordRequest } from './utils/discordRequest.js';
-import { testCommand } from './commands/test/test.js';
+import { testCommand } from './commands/test/testCommand.js';
 
 // Create an express app
 const app = express();
