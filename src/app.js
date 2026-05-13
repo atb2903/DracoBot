@@ -12,6 +12,7 @@ import { getRandomEmoji } from './utils/getRandomEmoji.js';
 import { getShuffledRPSOptions, getRPSResult } from './rpsGame.js';
 import { discordRequest } from './utils/discordRequest.js';
 import { testCommand } from './commands/test/testCommand.js';
+import { challengeCommand } from './commands/challenge/challengeCommand.js';
 
 // Create an express app
 const app = express();
@@ -49,42 +50,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "challenge" command
     if (name === 'challenge' && id) {
-      // Interaction context
-      const context = req.body.context;
-      // User ID is in user field for (G)DMs, and member for servers
-      const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
-      // User's object choice
-      const objectName = req.body.data.options[0].value;
-
-      // Create active game using message ID as the game ID
-      activeGames[id] = {
-        id: userId,
-        objectName,
-      };
-
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-          components: [
-            {
-              type: MessageComponentTypes.TEXT_DISPLAY,
-              content: `Rock paper scissors challenge from <@${userId}>`,
-            },
-            {
-              type: MessageComponentTypes.ACTION_ROW,
-              components: [
-                {
-                  type: MessageComponentTypes.BUTTON,
-                  custom_id: `accept_button_${req.body.id}`,
-                  label: 'Accept',
-                  style: ButtonStyleTypes.PRIMARY,
-                },
-              ],
-            },
-          ],
-        },
-      });
+      return challengeCommand(req, res, activeGames, id);
     }
 
     console.error(`unknown command: ${name}`);
