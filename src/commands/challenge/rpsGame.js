@@ -1,4 +1,4 @@
-import { capitalize } from './utils/capitalize.js';
+import { capitalize } from '../../utils/capitalize.js';
 
 export function getRPSResult(p1, p2) {
   let gameResult;

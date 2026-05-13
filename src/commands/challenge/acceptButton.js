@@ -4,7 +4,7 @@ import {
     InteractionResponseFlags,
     MessageComponentTypes,
 } from 'discord-interactions';
-import {getShuffledRPSOptions} from '../../rpsGame.js';
+import {getShuffledRPSOptions} from './rpsGame.js';
 import { discordRequest } from '../../utils/discordRequest.js';
 
 export async function acceptButton(req, res, componentId) {
