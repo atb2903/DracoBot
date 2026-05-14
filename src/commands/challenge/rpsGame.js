@@ -1,10 +1,6 @@
 import { capitalize } from '../../utils/capitalize.js';
 import { rpsChoices } from './rpsChoices.js';
-
-
-export function getRPSChoices() {
-  return Object.keys(rpsChoices);
-}
+import { getRPSChoices } from './getRPSChoices.js';
 
 // Function to fetch shuffled options for select menu
 export function getShuffledRPSOptions() {
