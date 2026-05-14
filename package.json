@@ -13,19 +13,20 @@
     "register": "node src/commands/commands.js",
     "dev": "nodemon src/app.js"
   },
-  "contributors" : [
+  "contributors": [
     {
-      "name" : "Shay DeWael"
+      "name": "Shay DeWael"
     },
     {
-      "name" : "Alex Burnham"
+      "name": "Alex Burnham"
     }
   ],
   "license": "GPL-3.0",
   "dependencies": {
     "discord-interactions": "^4.0.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jsdoc": "^4.0.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
