@@ -1,4 +1,4 @@
-import { formatRPSResult } from './rpsGame.js';
+import { formatRPSResult } from './formatRPSResult.js';
 import { RPSChoices } from './rpsGame.js';
 
 export function getRPSResult(p1, p2) {
