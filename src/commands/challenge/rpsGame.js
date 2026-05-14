@@ -1,8 +1,6 @@
 import { capitalize } from '../../utils/capitalize.js';
 import { rpsChoices } from './rpsChoices.js';
 
-// this is just to figure out winner + verb
-
 
 export function getRPSChoices() {
   return Object.keys(rpsChoices);
