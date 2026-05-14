@@ -7,6 +7,7 @@ import {
 
 /**
  * Handles the challenge command for the rock-paper-scissors game.
+ * @memberof module:challengeCommand
  * @param {Object} req - The request object from the interaction
  * @param {Object} res - The response object to send the interaction response
  * @param {Object} activeGames - The object containing active games

@@ -9,6 +9,7 @@ import { discordRequest } from '../../utils/discordRequest.js';
 
 /**
  * This function handles the accept button interaction for the rock-paper-scissors game.
+ * @memberof module:challengeCommand
  * @param {Object} req - The request object from the interaction
  * @param {Object} res - The response object to send the interaction response
  * @param {string} componentId - The ID of the component that triggered the interaction
