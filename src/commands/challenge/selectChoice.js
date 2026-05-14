@@ -1,4 +1,4 @@
-import { getRPSResult } from './rpsGame.js';
+import { getRPSResult } from './getRPSResult.js';
 import 'dotenv/config';
 import {
     InteractionResponseType,
