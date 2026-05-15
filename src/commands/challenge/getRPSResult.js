@@ -1,6 +1,14 @@
 import { formatRPSResult } from './formatRPSResult.js';
 import { rpsChoices } from './rpsChoices.js';
 
+/**
+ * @memberof module:challengeCommand
+ * @function getRPSResult
+ * @description Determines the result of a rock-paper-scissors game between two players.
+ * @param {Object} p1 - The first player's choice object.
+ * @param {Object} p2 - The second player's choice object.
+ * @returns {string} A formatted string describing the outcome of the game.
+ */
 export function getRPSResult(p1, p2) {
   let gameResult;
   if (rpsChoices[p1.objectName] && rpsChoices[p1.objectName][p2.objectName]) {
