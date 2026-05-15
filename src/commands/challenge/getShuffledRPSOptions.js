@@ -2,7 +2,12 @@ import { capitalize } from '../../utils/capitalize.js';
 import { rpsChoices } from './rpsChoices.js';
 import { getRPSChoices } from './getRPSChoices.js';
 
-// Function to fetch shuffled options for select menu
+/**
+ * @memberof module:challengeCommand
+ * @function getShuffledRPSOptions
+ * @description Retrieves shuffled options for rock-paper-scissors gameplay.
+ * @returns {Object[]} An array of objects representing the shuffled choices for a select menu.
+ */
 export function getShuffledRPSOptions() {
   const allChoices = getRPSChoices();
   const options = [];

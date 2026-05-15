@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: getRPSChoices.js</title>
+    <title>JSDoc: Source: getShuffledRPSOptions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: getRPSChoices.js</h1>
+    <h1 class="page-title">Source: getShuffledRPSOptions.js</h1>
 
     
 
@@ -26,16 +26,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { rpsChoices } from './rpsChoices.js';
+            <pre class="prettyprint source linenums"><code>import { capitalize } from '../../utils/capitalize.js';
+import { rpsChoices } from './rpsChoices.js';
+import { getRPSChoices } from './getRPSChoices.js';
 
 /**
  * @memberof module:challengeCommand
- * @function getRPSChoices
- * @description Retrieves the available choices for rock-paper-scissors gameplay.
- * @returns {string[]} An array of strings representing the valid choices (e.g., "rock", "paper", "scissors").
+ * @function getShuffledRPSOptions
+ * @description Retrieves shuffled options for rock-paper-scissors gameplay.
+ * @returns {Object[]} An array of objects representing the shuffled choices for a select menu.
  */
-export function getRPSChoices() {
-  return Object.keys(rpsChoices);
+export function getShuffledRPSOptions() {
+  const allChoices = getRPSChoices();
+  const options = [];
+
+  for (let c of allChoices) {
+    // Formatted for select menus
+    // https://discord.com/developers/docs/components/reference#string-select-select-option-structure
+    options.push({
+      label: capitalize(c),
+      value: c.toLowerCase(),
+      description: rpsChoices[c]['description'],
+    });
+  }
+
+  return options.sort(() => Math.random() - 0.5);
 }</code></pre>
         </article>
     </section>
