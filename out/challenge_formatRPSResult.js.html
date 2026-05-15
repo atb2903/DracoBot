@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: challenge/formatRPSResult.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: challenge/formatRPSResult.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @memberof module:challengeCommand
+ * @function formatRPSResult
+ * @description Formats the result of a rock-paper-scissors game into a readable string.
+ * @param {Object} result - The result object containing win, lose, and verb properties.
+ * @returns {string} A formatted string describing the outcome of the game.
+ */
+export function formatRPSResult(result) {
+  const { win, lose, verb } = result;
+  return verb === 'tie'
+    ? `&lt;@${win.id}> and &lt;@${lose.id}> draw with **${win.objectName}**`
+    : `&lt;@${win.id}>'s **${win.objectName}** ${verb} &lt;@${lose.id}>'s **${lose.objectName}**`;
+}</code></pre>
+        </article>
+    </section>
 
 
 
