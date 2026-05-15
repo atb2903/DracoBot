@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: formatRPSResult.js</title>
+    <title>JSDoc: Source: getRPSChoices.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: formatRPSResult.js</h1>
+    <h1 class="page-title">Source: getRPSChoices.js</h1>
 
     
 
@@ -26,18 +26,16 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>import { rpsChoices } from './rpsChoices.js';
+
+/**
  * @memberof module:challengeCommand
- * @function formatRPSResult
- * @description Formats the result of a rock-paper-scissors game into a readable string.
- * @param {Object} result - The result object containing win, lose, and verb properties.
- * @returns {string} A formatted string describing the outcome of the game.
+ * @function getRPSChoices
+ * @description Retrieves the available choices for rock-paper-scissors gameplay.
+ * @returns {string[]} An array of strings representing the valid choices (e.g., "rock", "paper", "scissors").
  */
-export function formatRPSResult(result) {
-  const { win, lose, verb } = result;
-  return verb === 'tie'
-    ? `&lt;@${win.id}> and &lt;@${lose.id}> draw with **${win.objectName}**`
-    : `&lt;@${win.id}>'s **${win.objectName}** ${verb} &lt;@${lose.id}>'s **${lose.objectName}**`;
+export function getRPSChoices() {
+  return Object.keys(rpsChoices);
 }</code></pre>
         </article>
     </section>
