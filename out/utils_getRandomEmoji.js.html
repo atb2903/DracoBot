@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: commands/challenge/getShuffledRPSOptions.js</title>
+    <title>JSDoc: Source: utils/getRandomEmoji.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: commands/challenge/getShuffledRPSOptions.js</h1>
+    <h1 class="page-title">Source: utils/getRandomEmoji.js</h1>
 
     
 
@@ -26,31 +26,15 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { capitalize } from '../../utils/capitalize.js';
-import { rpsChoices } from './rpsChoices.js';
-import { getRPSChoices } from './getRPSChoices.js';
-
-/**
- * @memberof module:challengeCommand
- * @function getShuffledRPSOptions
- * @description Retrieves shuffled options for rock-paper-scissors gameplay.
- * @returns {Object[]} An array of objects representing the shuffled choices for a select menu.
+            <pre class="prettyprint source linenums"><code>/**
+ * @memberof module:utils
+ * @function getRandomEmoji
+ * @description Returns a random emoji from a predefined list of emojis.
+ * @returns {string} A random emoji.
  */
-export function getShuffledRPSOptions() {
-  const allChoices = getRPSChoices();
-  const options = [];
-
-  for (let c of allChoices) {
-    // Formatted for select menus
-    // https://discord.com/developers/docs/components/reference#string-select-select-option-structure
-    options.push({
-      label: capitalize(c),
-      value: c.toLowerCase(),
-      description: rpsChoices[c]['description'],
-    });
-  }
-
-  return options.sort(() => Math.random() - 0.5);
+export function getRandomEmoji() {
+  const emojiList = ['😭','😄','😌','🤓','😎','😤','🤖','😶‍🌫️','🌏','📸','💿','👋','🌊','✨'];
+  return emojiList[Math.floor(Math.random() * emojiList.length)];
 }</code></pre>
         </article>
     </section>
