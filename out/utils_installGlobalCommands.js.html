@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/getRandomEmoji.js</title>
+    <title>JSDoc: Source: utils/installGlobalCommands.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/getRandomEmoji.js</h1>
+    <h1 class="page-title">Source: utils/installGlobalCommands.js</h1>
 
     
 
@@ -26,15 +26,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>import { discordRequest } from './discordRequest.js';
+
+/**
  * @memberof module:utils
- * @function getRandomEmoji
- * @description Returns a random emoji from a predefined list of emojis.
- * @returns {string} A random emoji.
+ * @function installGlobalCommands
+ * @description Installs or updates global application commands for a Discord bot using the Discord API.
+ * @param {string} appId - The application ID of the Discord bot.
+ * @param {Array} commands - An array of command objects to be registered as global commands.
  */
-export function getRandomEmoji() {
-  const emojiList = ['😭','😄','😌','🤓','😎','😤','🤖','😶‍🌫️','🌏','📸','💿','👋','🌊','✨'];
-  return emojiList[Math.floor(Math.random() * emojiList.length)];
+export async function installGlobalCommands(appId, commands) {
+  // API endpoint to overwrite global commands
+  const endpoint = `applications/${appId}/commands`;
+
+  try {
+    // This is calling the bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
+    await discordRequest(endpoint, { method: 'PUT', body: commands });
+  } catch (err) {
+    console.error(err);
+  }
 }</code></pre>
         </article>
     </section>
