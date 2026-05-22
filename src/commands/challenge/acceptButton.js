@@ -13,6 +13,7 @@ import { discordRequest } from '../../utils/discordRequest.js';
  * @param {Object} req - The request object from the interaction
  * @param {Object} res - The response object to send the interaction response
  * @param {string} componentId - The ID of the component that triggered the interaction
+ * @return {Promise<void>} - A promise that resolves when the interaction response is sent
  */
 export async function acceptButton(req, res, componentId) {
     // get the associated game ID

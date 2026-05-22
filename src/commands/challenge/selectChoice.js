@@ -16,6 +16,7 @@ import { getRandomEmoji } from '../../utils/getRandomEmoji.js';
  * @param {Object} res - The response object for sending interaction responses.
  * @param {string} componentId - The ID of the component that triggered the interaction.
  * @param {Object} activeGames - An object storing active game states indexed by game ID.
+ * @return {Promise<void>} - A promise that resolves when the interaction response is sent
  */
 export async function selectChoice(req, res, componentId, activeGames) {
     // get the associated game ID
