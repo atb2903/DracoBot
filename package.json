@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node src/app.js",
     "register": "node src/commands/registerCommands.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "test": "jest"
   },
   "contributors": [
     {
