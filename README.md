@@ -27,7 +27,7 @@ From the project root, run the following:
 
 To run unit tests with jest, run the following:
 
-* `npm run test`
+* `npm test`
 
 ## Supported Commands
 

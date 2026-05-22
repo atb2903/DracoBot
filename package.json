@@ -9,10 +9,10 @@
     "node": ">=18.x"
   },
   "scripts": {
-    "start": "node src/app.js",
-    "register": "node src/commands/registerCommands.js",
+    "start": "node src/app.js --experimental-vm-modules",
+    "register": "node src/commands/registerCommands.js --experimental-vm-modules",
     "dev": "nodemon src/app.js",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "contributors": [
     {
