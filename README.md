@@ -23,6 +23,12 @@ From the project root, run the following:
 * `npm run start`
 * `ngrok http 3000`
 
+## Test
+
+To run unit tests with jest, run the following:
+
+* `npm run test`
+
 ## Supported Commands
 
 ### test
