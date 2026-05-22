@@ -36,6 +36,6 @@ Simple test command to test basic bot functionality.
 
 An extended rock-paper-scissors game from the discord bot tutorial
 
-* **input:** `\challenge <choice>`
-    * **parameter `<choice>`:** the object you choose to play for the game.
-* **output** an extended rock-paper-scissors game which you or another user can respond to through the bot's GUI, playing against your input choice.
+* **input:** `\challenge <object>`
+    * **parameter `<object>`:** the object you choose to play for the game.
+* **output** an extended rock-paper-scissors game which you or another user can respond to through the bot's GUI, playing against your input object.
