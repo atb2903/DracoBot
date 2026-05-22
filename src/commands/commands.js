@@ -1,22 +1,6 @@
 import 'dotenv/config';
-import { getRPSChoices } from './challenge/getRPSChoices.js';
-import { capitalize } from '../utils/capitalize.js';
+import { createRPSCommandChoices } from './challenge/createRPSCommandChoices.js';
 import { installGlobalCommands } from '../utils/installGlobalCommands.js';
-
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getRPSChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase(),
-    });
-  }
-
-  return commandChoices;
-}
 
 // Simple test command
 const TEST_COMMAND = {
@@ -37,7 +21,7 @@ const CHALLENGE_COMMAND = {
       name: 'object',
       description: 'Pick your object',
       required: true,
-      choices: createCommandChoices(),
+      choices: createRPSCommandChoices(),
     },
   ],
   type: 1,
